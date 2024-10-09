@@ -1,0 +1,22 @@
+#include "Particle.h"  // Include Particle library for Argon support
+SYSTEM_MODE(SEMI_AUTOMATIC);
+SYSTEM_THREAD(ENABLED);
+
+int incomingByte = 0;  // for incoming serial data
+
+void setup() {
+  Serial.begin(9600);   // Open serial port for communication with computer
+  Serial1.begin(9600);  // Open UART serial port for communication with Transmitter Argon
+}
+
+void loop() {
+  // Check if there's any data available on Serial1
+  if (Serial1.available() > 0) {
+    // Read the incoming byte from Serial1
+    incomingByte = Serial1.read();
+
+    // Print the received data to the serial monitor
+    Serial.print("I received: ");
+    Serial.println(incomingByte);
+  }
+}
